@@ -1,0 +1,66 @@
+body
+{
+	background: url(images/bg3.png);
+	background-size: cover;
+}
+
+#edu
+{
+	left:10%;
+	top:33%;
+	position: fixed;
+}
+
+
+#man
+{
+	left:13.5%;
+	top:14.5%;
+	position: fixed;
+}
+
+
+#word
+{
+	left:26.5%;
+	top:10%;
+	position: fixed;
+}
+
+
+#hacker
+{
+	left:40.5%;
+	top:14.5%;
+	position: fixed;
+}
+
+
+#other
+{
+	left:48.5%;
+	top:34.5%;
+	position: fixed;
+}
+
+
+#about
+{
+	left:27.5%;
+	top:44%;
+	position: fixed;
+}
+
+#me
+{
+	left:61.2%;
+	top:18%;
+	position: fixed;
+}
+
+#home
+{
+	left:9%;
+	top:8%;
+	position: fixed;
+}
