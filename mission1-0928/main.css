@@ -64,3 +64,21 @@ body
 	top:8%;
 	position: fixed;
 }
+
+#foot
+{
+	left:45%;
+	top:90%;
+	position: fixed;
+	color: #fff;
+}
+
+.foot_left
+{
+	float:left;
+}
+
+.foot_right
+{
+	float: right;
+}
