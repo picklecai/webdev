@@ -1,0 +1,22 @@
+body
+{
+	background-color: #e4e6e4;
+}
+
+#banner
+{
+	margin: auto;
+	width: 1440px;
+	height: 287px; 
+}
+
+.top_menu
+{
+
+	margin-top:5px;
+}
+
+.top_menu ul
+{
+	float:left;
+}
