@@ -32,4 +32,12 @@ info_age = "你的年龄是：" + age;
 alert(info_age);
 
 //No.5
-
+// 对象
+var member1 = {name: prompt("Name:"), birth: prompt("Birth:"), tall: prompt("Tall:")};
+alert(member1.name + ", " + member1.birth + ", " + member1.tall);
+//数组
+var member2 = Array();
+member2.name = prompt("Name:");
+member2.birth = prompt("Birth:");
+member2.tall = prompt("Tall:");
+alert(member2.name + ", " + member2.birth + ", " + member2.tall);
