@@ -8,7 +8,13 @@
 </head>
 
 <body>
-
+	<audio id="audio" loop="loop" src="music/chunfeng.mp3" preload="auto" style="opacity:0" hidden="true"><!-- controls="controls" -->
+		<source  type="audio/mp3">
+	</audio>
+	<script type="text/javascript">
+		var myAuto = document.getElementById('audio');
+		myAuto.play();
+	</script>	
 	<div class="banner">
 		<a href="index.html"> <img src="images/banner.png"> </a>
 	</div>
