@@ -2,19 +2,17 @@ body
 {
 	background-color: #e4e6e4;
 	font-size: 100%;
+	font-family: "Microsoft YaHei";
 }
 
 p
 {
-	font-size: 1em;
-	font-family: "Microsoft YaHei";
+	font-size: 1em;	
 }
 
-h2
+a:link
 {
-	text-align: center;
-	font-size: 1.5em;
-	font-family: "Microsoft YaHei";
+	text-decoration: none;
 }
 
 .banner
@@ -29,8 +27,8 @@ h2
 {
 	margin-top: 0.5em;
 	font-size: 2em;
-	font-family: "Microsoft YaHei";
-
+	font-family: "Microsoft JhengHei";
+	font-weight: bold;
 }
 
 .top_menu ul
@@ -43,7 +41,7 @@ h2
 .top_menu ul li
 {
 	float:left;
-	height: 3.5em;
+	height: 2.5em;
 	padding: 0 0.5em;
 }
 
@@ -53,6 +51,12 @@ h2
 	margin:4em 8em 0.25em;	
 	width:83%;
 	height: 100%;
+}
+
+.main_left
+{
+	width: 60%;
+	margin-left: 10%;
 }
 
 .text_para
@@ -73,7 +77,6 @@ h2
 	margin: auto;
 	padding: 0.25em;
 	width: 100%;
-	font-family: "Microsoft YaHei";
 	background: #88C0FA;
 	color:#fff;
 	text-align: center;
