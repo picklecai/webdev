@@ -16,11 +16,11 @@ function average_score(list_num)
 	for(var i=0; i<list_num; i++)  //这里是分号，不是逗号
 	{
 		book_list[i] = new Book(prompt("name"), prompt("author"), prompt("score"));
-		sum_score += parseFloat(book_list[i].Score);
+		sum_score += parseFloat(book_list[i].Score); //不转为float就会变成字符串连接
 	}
 
 	alert(sum_score/list_num);
-	//console.log("%d", book_list[0].Score);
+	//console.log("%d", book_list[0].Score); //这个没有成功
 }
 
 //调用均值计算函数
