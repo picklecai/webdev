@@ -27,3 +27,4 @@ function average_score(list_num)
 average_score(3);
 
 //No.2
+document.createElement("p");
