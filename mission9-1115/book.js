@@ -1,7 +1,7 @@
 //No.1
 
 //定义对象和数组
-var book_list = new Array();
+/*var book_list = new Array();
 function Book(name, author, score)
 {
 	this.Name = name;
@@ -25,6 +25,17 @@ function average_score(list_num)
 
 //调用均值计算函数
 average_score(3);
-
+*/
 //No.2
-document.createElement("p");
+var para = document.createElement("p");
+var tr = document.createElement("tr");
+var td1 = document.createElement("td");
+var td2 = document.createElement("td");
+var td3 = document.createElement("td");
+var td4 = document.createElement("td");
+alert(para.nodeName);
+var table = document.getElementById("book_info");
+table.appendChild(tr).appendChild(td1);
+table.appendChild(tr).appendChild(td2);
+table.appendChild(tr).appendChild(td3);
+table.appendChild(tr).appendChild(td4);
