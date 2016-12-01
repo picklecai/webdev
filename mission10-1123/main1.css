@@ -1,0 +1,41 @@
+body
+{
+	background-color: #e4e6e4;
+	font-size: 100%;
+	font-family: "Microsoft YaHei";
+}
+
+.head_text
+{
+	margin: auto;
+	text-align: center;
+}
+
+.nav
+{
+	float:left;
+	list-style: none;
+	width: 10em;
+}
+
+.article_list
+{
+	/*float: left;*/
+	margin: 0 11em;
+	width: 65%; /*这是相对宽度；*/
+	/*width:54em;*/ /*这是固定宽度；*/
+}
+
+.myself
+{
+	float: right;
+	width: 10em;
+	/*margin-top: -46.4em; /*不明白为什么会“掉下去”；*/
+	margin-right: 0;
+}
+
+.foot
+{
+	margin:auto;
+	text-align: center;
+}
