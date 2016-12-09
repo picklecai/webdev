@@ -1,0 +1,19 @@
+body
+{
+	font-size: 100%;
+	font-family: "Microsoft YaHei";
+}
+
+.sec
+{
+	background-color: #e4e6e4;
+	-webkit-border-radius:1em;
+	border-radius: 1em;
+	margin:1em;
+	padding:1em;
+}
+
+.sec_title
+{
+	margin:1em 0 ;
+}
