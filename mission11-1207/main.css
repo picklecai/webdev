@@ -17,3 +17,27 @@ body
 {
 	margin:1em 0 ;
 }
+
+.round_img
+{
+	-webkit-border-radius:50%;
+	border-radius: 50%;	
+}
+
+.member1
+{
+	float: left;
+	text-align: center;
+}
+
+.member2
+{
+	float: left;
+	text-align: center;
+}
+
+.member3
+{
+	float: left;	
+	text-align: center;
+}
