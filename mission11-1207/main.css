@@ -11,6 +11,7 @@ body
 	border-radius: 1em;
 	margin:1em;
 	padding:1em;
+	overflow: hidden;
 }
 
 .sec_title
@@ -24,20 +25,35 @@ body
 	border-radius: 50%;	
 }
 
+.coach
+{
+	text-align: center;
+}
+
+.mmber
+{
+	width: 50%;
+	margin: auto;
+
+}
+
 .member1
 {
-	float: left;
+	float: left;	
+	margin-left:15%;
 	text-align: center;
 }
 
 .member2
 {
-	float: left;
+	float: left;	
+	margin-left: 15%;
 	text-align: center;
 }
 
 .member3
 {
-	float: left;	
+	float: left;
+	margin-left: 15%;
 	text-align: center;
 }
