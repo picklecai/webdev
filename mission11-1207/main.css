@@ -30,30 +30,35 @@ body
 	text-align: center;
 }
 
-.mmber
+/*当外框div样式不起作用时，每个成员div框加上margin-left:15%，就可以分散居中；*/
+/*当外框div样式启用时，需要在margin:auto;外再加上宽度；*/
+
+.member
 {
-	width: 50%;
+	width: 60%;
 	margin: auto;
+	border: 1px solid #F00;
+	
 
 }
 
 .member1
 {
 	float: left;	
-	margin-left:15%;
+
 	text-align: center;
 }
 
 .member2
 {
 	float: left;	
-	margin-left: 15%;
+
 	text-align: center;
 }
 
 .member3
 {
 	float: left;
-	margin-left: 15%;
+
 	text-align: center;
 }
