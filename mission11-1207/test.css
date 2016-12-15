@@ -38,3 +38,23 @@ body
 	min-width: 62em; /*为什么不起作用？*/
 
 }
+
+.img
+{
+	width: 20%;
+	float: left;
+	/*max-width: 15em;*/
+}
+
+.txt
+{
+	width: 70%;
+	float: right;
+}
+
+.main2
+{
+	overflow: hidden;
+	min-width: 62em; /*为什么不起作用？*/
+
+}
