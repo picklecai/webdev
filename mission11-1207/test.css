@@ -35,5 +35,6 @@ body
 .main
 {
 	overflow: hidden;
+	min-width: 62em; /*为什么不起作用？*/
 
 }
