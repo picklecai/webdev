@@ -1,0 +1,39 @@
+body
+{
+	font-size: 100%;
+	font-family: "Microsoft YaHei";
+}
+
+.main .primary
+{
+	float:right;
+	width: 70%;
+
+}
+
+.main .primary .primary
+{
+	width: 60%;
+	float: left;
+	border: 1px solid #F20;	
+}
+
+.main .primary .secondary
+{
+	width: 30%;
+	float:right;
+	border: 1px solid #F00;	
+}
+
+.main .secondary
+{
+	float: left;
+	width: 20%;
+	border: 1px solid #300;
+}
+
+.main
+{
+	overflow: hidden;
+
+}
