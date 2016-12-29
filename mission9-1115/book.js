@@ -1,7 +1,7 @@
 
 //No.2
 
-window.onload = function (); //一定要包在这个函数里，才会在窗口打开时执行
+window.onload = function () //一定要包在这个函数里，才会在窗口打开时执行
 {
 	//定义对象和数组
 	var book_list = new Array();
