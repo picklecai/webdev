@@ -1,0 +1,23 @@
+body
+{
+	font-family: "Helvetica", "Arial", serif;
+	margin: 1em 10%;
+}
+
+p
+{
+	text-align: center;
+}
+
+table
+{ 
+	table-layout:fixed; 
+	empty-cells:show; 
+	border-collapse: collapse; 
+	margin:0 auto; 
+} 
+
+td
+{ 
+	height:30px; 
+} 
