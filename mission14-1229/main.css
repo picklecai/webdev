@@ -10,6 +10,11 @@ a
 	text-decoration: none;
 }
 
+a:hover
+{
+	background-color: #538;
+}
+
 .menu
 {
 	font-weight: bold;
@@ -38,7 +43,8 @@ a
 {
 	background-color: #d2f;		
 	float: left;
-	padding: 0 0.5em;	
+	padding: 0 0.5em;
+
 }
 
 .right
@@ -52,5 +58,5 @@ a
 
 .child
 {
-	
+	display: none;
 }
