@@ -1,0 +1,61 @@
+body
+{
+	font-family: "Microsoft Yahei";
+}
+
+nav, nav.ul
+{
+	margin: 0;
+	padding: 0;
+	float: left;
+	border: 0.0625em solid #486B02;
+	background-color: #8BD400;
+}
+
+nav li
+{
+	float: left;
+	width: 8em;
+	list-style-type: none;
+	background-color: #8BD400;
+}
+
+nav li ul
+{
+	width: 8em;
+	position: absolute;
+	left:-999em;
+}
+
+nav li:hover ul
+{
+	left:auto;
+}
+
+nav a
+{
+	display: block;
+	color:#2B3F00;
+	text-decoration: none;
+	padding: 0.3em 1em;
+}
+
+nav li li a
+{
+	border-top: 0.0625em solid #E4FFD3;
+	border-bottom: 0.0625em solid #486B02;
+	border-left: 0;
+	border-right: 0;	
+}
+
+nav li:last-child a
+{
+	border-right: 0;
+	border-bottom: 0;
+}
+
+nav a:hover, a:focus
+{
+	color: #E4FFD3;
+	background-color: #6DA203;
+}
