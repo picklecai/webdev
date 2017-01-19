@@ -1,4 +1,4 @@
-function getHttpObject()
+function getHTTPObject()
 {
 	if (typeof XMLHttpRequest == "undefined")
 		XMLHttpRequest = function()
