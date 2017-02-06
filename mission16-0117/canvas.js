@@ -22,4 +22,12 @@ function draw()
 	}
 }
 
-window.onload = draw;
+function tshirt()
+{
+	var canvas = document.getElementById("tshirtCanvas");
+	var context = canvas.getContext("2d");
+	context.fillRect(10, 10, 100, 100);
+}
+
+//window.onload = draw;
+window.onload = tshirt;
