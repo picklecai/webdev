@@ -1,9 +1,9 @@
 function draw()
 {
-	var canvas = document.getElementById('draw-in-me');
+	var canvas = document.getElementById("draw-in-me");
 	if(canvas.getContext)
 	{
-		var ctx = canvas.getContext('2d');
+		var ctx = canvas.getContext("2d");
 		ctx.beginPath();
 		ctx.moveTo(120.0, 32.0);
 		ctx.bezierCurveTo(120.0, 36.4, 116.4, 40.0, 112.0, 40.0);
@@ -25,8 +25,16 @@ function draw()
 function tshirt()
 {
 	var canvas = document.getElementById("tshirtCanvas");
-	var context = canvas.getContext("2d");
-	context.fillRect(10, 10, 100, 100);
+	if(canvas.getContext)
+	{
+		var context = canvas.getContext("2d");
+		context.fillRect(10, 50, 500, 100);		
+	}
+	else
+	{
+		
+	}
+
 }
 
 //window.onload = draw;
