@@ -33,17 +33,10 @@ function tshirt()
 		var index = selectObj.selectedIndex;
 		var bgColor = selectObj[index].value;
 
-
-
 		var selectObj = document.getElementById("foregroundColor");
 		var index = selectObj.selectedIndex;
 		var fgColor = selectObj[index].value;	
 	}
-	else
-	{
-		
-	}
-
 }
 
 window.onload = function()
@@ -60,8 +53,7 @@ function previewHandler()
 		var context = canvas.getContext("2d");
 		var selectObj = document.getElementById("shape");
 		var index = selectObj.selectedIndex;
-		var shape = selectObj[index].value;	
-		
+		var shape = selectObj[index].value;			
 		if (shape=="squares")
 		{
 			for (var squares = 0; squares < 20; squares++)
@@ -69,6 +61,7 @@ function previewHandler()
 				drawSquare(canvas, context);
 			}
 		}
+	}
 }
 
 function drawCircle(canvas, context)
@@ -76,10 +69,8 @@ function drawCircle(canvas, context)
 	var radius = Math.floor(Math.random()*40);
 	var x = Math.floor(Math.random() * canvas.width);
 	var y = Math.floor(Math.random() * canvas.height);
-
 	context.beginPath();
 	context.arc(x, y, radius, 0, degreeToRadians(360), true);
-
 	context.fillStyle = "lightblue";
 	context.fill();
 }
