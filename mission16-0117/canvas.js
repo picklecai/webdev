@@ -62,7 +62,7 @@ function previewHandler()
 				drawSquare(canvas, context);
 			}
 		}
-		else (shape=="circles")
+		else if(shape=="circles")
 		{
 			for (var circles = 0; circles < 20; circles++)
 			{
