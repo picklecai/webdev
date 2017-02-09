@@ -1,59 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="ch">
 
-<head>
-	<meta charset="utf-8"/>
-	<link rel="stylesheet" href="main.css">
-	<title>Picklecai's Blog</title>	
-</head>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="main.css">
+		<title>Canvas Exercise</title>
+	</head>
 
-<body>
-	<audio id="audio" loop="loop" autoplay="autoplay"  src="music/chunfeng.mp3" > </audio>
-	<!-- <script type="text/javascript">
-		var myAuto = document.getElementById('audio');
-		myAuto.play();
-	</script>	-->
-	<div class="banner">
-		<a href="index.html"> <img src="images/banner.png"> </a>
-	</div>
-	<nav  class="top_menu">
-		<ul>
-			<li> <a href="about.html">关于我</a> </li>
-			<li> 文章列表</li>
-			<li> 相册 </li>
-		</ul>
-	</nav>
+	<body>
+		<!--<canvas id="draw-in-me" width="120" height="40"><p> Powered by HTML5 Canvas</p></canvas>-->
+		<canvas id="tshirtCanvas" width="600" height="200"><p> Powered by HTML5 Canvas</p></canvas>
+		<script type="text/javascript" src="canvas.js"></script>
+		<form>
+			<p>
+				<label for="backgroundColor">Select background color:</label>
+				<select id="backgroundColor">
+					<option value="white" selected="selected">White</option>
+					<option value="black">Black</option>
+				</select>
+			</p>
+			<p>
+				<label for="shape">Circles or squares?</label>
+				<select id="shape">
+					<option value="none" selected="selected">Neither</option>
+					<option value="circles">Circles</option>
+					<option value="squares">Squares</option>
+				</select>
+			</p>
+			<p>
+				<label for="foregroundColor">Select text color:</label>
+				<select id="foregroundColor">
+					<option value="black" selected="selected">Black</option>
+					<option value="white">White</option>
+				</select>
+			</p>
+			<p>
+				<label for="tweets">Pick a tweet:</label>
+				<select id="tweets"></select>
+			</p>
+			<p>
+				<input type="button" id="previewButton" value="Preview">
+			</p>
+		</form>		
+	</body>
 
-	<section class="main_left">
-		<img src="images/1013_11.png">
-		<h3> 机智和白描</h3>
-		<h6> 分类：书影人      阅读：2113次</h6>
-		<p> 机敏的文字容易让人佩服，白描的文字，不免让人生厌，没有耐心看完。所以对于钱钟书风格的文字，我小时候是接触过的。而张爱玲风格的文字就不熟悉。只要一看到 ... </p>
-		<a href="/article.html"> 更多…… </a>
-		<hr />
-	</section>
-
-	<section class="main_left">
-		<h3> 机智和白描</h3>
-		<h6> 分类：书影人      阅读：2113次</h6>
-		<p> 机敏的文字容易让人佩服，白描的文字，不免让人生厌，没有耐心看完。所以对于钱钟书风格的文字，我小时候是接触过的。而张爱玲风格的文字就不熟悉。只要一看到 ... </p>
-		<a href="/article.html"> 更多…… </a>
-		<hr />
-	</section>
-
-	<section class="main_left">
-		<h3> 机智和白描</h3>
-		<h6> 分类：书影人      阅读：2113次</h6>
-		<p> 机敏的文字容易让人佩服，白描的文字，不免让人生厌，没有耐心看完。所以对于钱钟书风格的文字，我小时候是接触过的。而张爱玲风格的文字就不熟悉。只要一看到 ... </p>
-		<a href="/article.html"> 更多…… </a>
-		<hr />
-	</section>
-
-	<footer class="foot">
-		<p> Picklecai的博客</p>
-		<p>版权所有：2016 @picklecai</p>		
-	</footer>
-
-</body>
-
-</html>
+</html>	
