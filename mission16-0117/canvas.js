@@ -54,12 +54,19 @@ function previewHandler()
 		var selectObj = document.getElementById("shape");
 		var index = selectObj.selectedIndex;
 		var shape = selectObj[index].value;	
-				fillBackgroundColor(canvas, context);				
+		fillBackgroundColor(canvas, context);	//写在for里面，每次就只画一个方块了。			
 		if (shape=="squares")
 		{
 			for (var squares = 0; squares < 20; squares++)
 			{
 				drawSquare(canvas, context);
+			}
+		}
+		else (shape=="circles")
+		{
+			for (var circles = 0; circles < 20; circles++)
+			{
+				drawCircle(canvas, context);
 			}
 		}
 	}
