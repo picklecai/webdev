@@ -1,9 +1,6 @@
 window.onload = function move()
 {
-	while(true)
-	{
-		setTimeout("draw()", 500);
-	}
+	setInterval("draw()", 500);
 }
 
 function draw()
@@ -12,7 +9,10 @@ function draw()
 	if(canvas.getContext)
 	{
 		var context = canvas.getContext("2d");
-		var w = Math.floor(Math.random()*40);
+		context.save();
+		context.clearRect(0,0,1300, 550);	
+		var w = 50;	
+		//var w = Math.floor(Math.random()*40);
 		var x = Math.floor(Math.random() * canvas.width);
 		var y = Math.floor(Math.random() * canvas.height);
 		context.fillStyle = "lightblue";
