@@ -1,8 +1,6 @@
 var canvas = document.getElementById("screensaver");
-//var width = canvas.style.width;
-//var height = canvas.style.height;
-width = 1300;
-height = 550;
+var width = canvas.offsetWidth;  //http://www.tianzhigang.com/article.asp?id=175
+var height = canvas.offsetHeight;
 
 function draw()
 {
