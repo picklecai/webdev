@@ -1,17 +1,20 @@
 window.onload = function move()
 {
-	setInterval("draw()", 500);
+	//setInterval("draw()", 500);
+	setTimeout("draw()", 500);
 }
 
 function draw()
 {
 	var canvas = document.getElementById("screensaver");
+	//var width = canvas.style.width;
+	//var height = canvas.style.height;
 	width = 1300;
 	height = 550;
 	if(canvas.getContext)
 	{
 		var context = canvas.getContext("2d");
-		context.save();
+		//context.save(); //删掉一点影响都没有。
 		context.clearRect(0,0,width, height);	
 		var w = 50;	
 		//var w = Math.floor(Math.random()*40);
@@ -35,5 +38,6 @@ function draw()
 			}		
 		context.fillStyle = "lightblue";
 		context.fillRect(x, y, w, w);
+		setTimeout("draw()", 500);
 	}
 }			
