@@ -5,7 +5,13 @@ var step = 10px;
 
 //定义单元格对象
 var cells = {};
-for(i=0)
+var wn = width/step;
+var hn = height/step;
+var n = wn * hn;
+for(i=0, i++, i<n)
+{
+	
+}
 
 
 /*
