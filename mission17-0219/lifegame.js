@@ -1,15 +1,26 @@
 window.onload = function lifegame()
 {
-	var context = canvas.getContext("2d");
-	var rn = 30;	
+	var context = canvas.getContext('2d');
+	var rn = 20;	
 	drawLine(context);
 	drawRandom(context, rn);
-	setInterval("updateCanvas()", 500);
+	updateCanvas();
+	//setInterval("updateCanvas()", 500);
 }
 
 var canvas = document.getElementById("lifegame");
 var step = 50;
 var wn = canvas.offsetWidth/step, hn = canvas.offsetHeight/step;
+var cell = Array();
+for(i=0; i<wn; i++)
+	for(j=0; j<hn; j++)
+	{
+		cell[i][j] = Object();
+		cell[i][j].x = i * step;
+		cell[i][j].y = j * step;
+		cell[i][j].flag = 0;
+		cell[i][j].ctxCells = 0;
+	}	
 
 function drawLine(context)
 {
@@ -35,18 +46,18 @@ function drawRandom(context, rn)
 	{
 		var x = step * (Math.floor(Math.random() * wn));
 		var y = step * (Math.floor(Math.random() * hn));
-		context.fillRect(x, y, step, step);		
+		fillCell(context, x, y);		
 	}
-
 }
 
-function updateCanvas(context, cellMatrix)
+function updateCanvas(context, cell)
 {
-	updateCellMatrix(cellMatrix);
+	updateCellMatrix(cell);
+	context.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);	
 	drawCanvas(context);
 }
 
-function updateCellMatrix(cellMatrix)
+function updateCellMatrix(cell)
 {
 	for(i=0; i<wn; i++)
 		for(j=0; j<hn; j++)
@@ -55,7 +66,41 @@ function updateCellMatrix(cellMatrix)
 		}
 }
 
-function drawCanvas(context)
+function fillCell(context, i, j)
 {
-	console.log("Draw Canvas");
+	x = i * step;
+	y = j *step;
+	context.fillRect(x, y, step, step);	
+}
+
+function discolorCell(context, i, j)
+{
+	x = i * step;
+	y = j *step;	
+	context.fillStyle = "white";
+	context.fillRect(x, y, step, step);		
+}
+
+function drawCanvas(context, i, j)
+{
+	x = i * step;
+	y = j *step;		
+	if (cell[i][j].ctxCells == 3)
+	{
+		fillCell(context, x, y);
+	}
+	else if (cell[i][j].ctxCells <2 || cell[i][j].ctxCells >3)
+	{
+		discolorCell(context, x, y);
+	}
+	else if (cell[i][j].ctxCells ==2)
+	{
+		return;
+	}
+}
+
+function getCtxCells(i, j)
+{
+	var ctxCells = cell[i-1][j-1].flag + cell[i][j-1].flag + cell[i+1][j-1].flag  + cell[i-1][j].flag + cell[i+1][j].flag + cell[i-1][j+1].flag + cell[i][j+1].flag + cell[i+1][j+1].flag;   
+	return ctxCells;
 }
