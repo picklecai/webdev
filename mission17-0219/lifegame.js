@@ -12,10 +12,14 @@ var canvas = document.getElementById("lifegame");
 var step = 50;
 var wn = canvas.offsetWidth/step, hn = canvas.offsetHeight/step, n = wn * hn;
 var cells = [];
+console.log(wn, hn);
 for(i=0; i<wn; i++)
+	if(!cells[i])cells[i] = [];
 	for(j=0; j<hn; j++)
-	{
-		cells[i][j] = {"x":i*step, "y":j*step, "flag":0, "ctxCells":0};
+	{		
+		
+		//cells[i] = {"x":i*step, "flag":0, "ctxCells":0};
+		//cells[i][j] = {"x":i*step, "y":j*step, "flag":0, "ctxCells":0};
 	}	
 
 function drawLine(context)
