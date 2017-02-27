@@ -22,7 +22,7 @@ for(i=0; i<wn; i++)
 			cells[i][j] = {"x":i*step, "y":j*step, "flag":0, "ctxCells":0};
 		}
 	}
-
+//console.log(cells[4][5].flag); 这里可以调用
 function drawLine(context)
 {
 	context.beginPath();
@@ -48,6 +48,7 @@ function drawRandom(context, rn)
 		var x = step * (Math.floor(Math.random() * wn));
 		var y = step * (Math.floor(Math.random() * hn));
 		fillCell(context, x/step, y/step);
+		console.log(cells[x/step][y/step].flag); //这里也可以调用；
 	}
 }
 
@@ -80,7 +81,7 @@ function discolorCell(context, i, j)
 	cells[i][j].flag = 0;	
 }
 
-function getCtxCells(context, i, j)
+function getCtxCells(cells, i, j)
 {
 	if(i==0)
 	{
@@ -109,7 +110,7 @@ function drawCanvas(context, i, j)
 {
 	x = i * step;
 	y = j *step;
-	cells[i][j].ctxCells = getCtxCells(context, i, j);
+	cells[i][j].ctxCells = getCtxCells(cells, i, j);
 	if (cells[i][j].ctxCells == 3)
 	{
 		fillCell(context, i, j);
