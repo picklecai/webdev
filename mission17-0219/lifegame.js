@@ -4,14 +4,15 @@ window.onload = function lifegame()
 	var rn = 20;	
 	drawLine(context);
 	drawRandom(context, rn);
-	//updateCanvas();
-	setInterval("updateCanvas()", 500);
+	updateCanvas();
+	//setInterval("updateCanvas()", 500);
 }
 
 var canvas = document.getElementById("lifegame");
 var step = 50;
 var wn = canvas.offsetWidth/step, hn = canvas.offsetHeight/step, n = wn * hn;
 var cells = [];
+var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
 //console.log(wn, hn);//浮点数
 for(i=0; i<wn; i++)
 	{
@@ -21,6 +22,7 @@ for(i=0; i<wn; i++)
 			cells[i][j] = {"x":i*step, "y":j*step, "flag":0, "ctxCells":0};
 		}
 	}
+
 function drawLine(context)
 {
 	context.beginPath();
@@ -55,7 +57,6 @@ function updateCanvas(context, cell)
 	{
 		for(j=0; j<hn; j++)
 		{
-			context.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);	
 			drawCanvas(context, i, j);			
 		}
 	}	
@@ -65,6 +66,7 @@ function fillCell(context, i, j)
 {
 	x = i * step;
 	y = j *step;
+	context.fillStyle = randomColor;	
 	context.fillRect(x, y, step, step);
 	cells[i][j].flag = 1;
 }
@@ -78,17 +80,36 @@ function discolorCell(context, i, j)
 	cells[i][j].flag = 0;	
 }
 
-function getCtxCells(i, j)
+function getCtxCells(context, i, j)
 {
-	var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;   
-	return ctxCells;
+	if(i==0)
+	{
+		cells[i][j].ctxCells = cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i+1][j].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
+	}
+	else if(j==0)
+	{
+		cells[i][j].ctxCells = cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
+	}
+	else if(i==wn)
+	{
+		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i-1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag;
+	}
+	else if(j==hn)
+	{
+		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag;
+	}
+	else
+	{
+		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
+	}  
+	return cells[i][j].ctxCells;
 }
 
 function drawCanvas(context, i, j)
 {
 	x = i * step;
 	y = j *step;
-	cells[i][j].ctxCells = getCtxCells(i, j);
+	cells[i][j].ctxCells = getCtxCells(context, i, j);
 	if (cells[i][j].ctxCells == 3)
 	{
 		fillCell(context, i, j);
