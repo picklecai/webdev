@@ -10,16 +10,12 @@ window.onload = function lifegame()
 
 var canvas = document.getElementById("lifegame");
 var step = 50;
-var wn = canvas.offsetWidth/step, hn = canvas.offsetHeight/step;
-var cell = Array();
+var wn = canvas.offsetWidth/step, hn = canvas.offsetHeight/step, n = wn * hn;
+var cells = [];
 for(i=0; i<wn; i++)
 	for(j=0; j<hn; j++)
 	{
-		cell[i][j] = Object();
-		cell[i][j].x = i * step;
-		cell[i][j].y = j * step;
-		cell[i][j].flag = 0;
-		cell[i][j].ctxCells = 0;
+		cells[i][j] = {"x":i*step, "y":j*step, "flag":0, "ctxCells":0};
 	}	
 
 function drawLine(context)
