@@ -1,23 +1,29 @@
 window.onload = function lifegame()
 {
-	var context = canvas.getContext('2d');
-	var rn = 35;	
-	//drawLine(context);
-	drawRandom(context, rn);
-	/*for(i=0;i<wn-1;i++)
+	var button = document.getElementById("startButton");
+	button.onclick = function startHandler()
 	{
-		for(j=0;j<hn-1;j++)
+		var context = canvas.getContext('2d');
+		//drawLine(context);
+		drawRandom(context, rn);
+		/*for(i=0;i<wn-1;i++)
 		{
-			//console.log(getCtxCells(cells, i, j));
-			console.log(cells[i][j].flag);
-		}
-	}*/
-	//updateCanvas();
-	setInterval("updateCanvas()", 500);
-	//context.fillStyle = "black";
-	//drawLine(context);
-}
+			for(j=0;j<hn-1;j++)
+			{
+				//console.log(getCtxCells(cells, i, j));
+				console.log(cells[i][j].flag);
+			}
+		}*/
+		//updateCanvas();
+		setInterval("updateCanvas()", 500);
+		//context.fillStyle = "black";
+		//drawLine(context);		
+	}
 
+}
+var selectObj = document.getElementById("randomCellNum");
+var index = selectObj.selectedIndex;
+var rn = selectObj[index].value;
 var canvas = document.getElementById("lifegame");
 var step = 50;
 var wn = canvas.offsetWidth/step, hn = canvas.offsetHeight/step, n = wn * hn;

@@ -7,8 +7,24 @@
 	</head>
 
 	<body>
+		<form>
+			<p>
+				<label for="randomCellNum">选择初始cell数目：</label>
+				<select id="randomCellNum">
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="30" selected="selected">30</option>
+					<option value="40">40</option>
+					<option value="50">50</option>
+				</select>
+			</p>
+			<p>
+				<input type="button" id="startButton" value="Start">
+			</p>			
+		</form>	
 		<canvas id="lifegame" width="1300" height="550"></canvas>
 		<script type="text/javascript" src="lifegame.js"></script>
+
 	</body>
 
 </html>
