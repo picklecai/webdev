@@ -1,11 +1,19 @@
 window.onload = function lifegame()
 {
 	var context = canvas.getContext('2d');
-	var rn = 20;	
+	var rn = 30;	
 	drawLine(context);
 	drawRandom(context, rn);
-	updateCanvas();
-	//setInterval("updateCanvas()", 500);
+	/*for(i=0;i<wn-1;i++)
+	{
+		for(j=0;j<hn-1;j++)
+		{
+			//console.log(getCtxCells(cells, i, j));
+			console.log(cells[i][j].flag);
+		}
+	}*/
+	//updateCanvas();
+	setInterval("updateCanvas()", 500);
 }
 
 var canvas = document.getElementById("lifegame");
@@ -22,7 +30,7 @@ for(i=0; i<wn; i++)
 			cells[i][j] = {"x":i*step, "y":j*step, "flag":0, "ctxCells":0};
 		}
 	}
-//console.log(cells[4][5].flag); 这里可以调用
+
 function drawLine(context)
 {
 	context.beginPath();
@@ -48,19 +56,19 @@ function drawRandom(context, rn)
 		var x = step * (Math.floor(Math.random() * wn));
 		var y = step * (Math.floor(Math.random() * hn));
 		fillCell(context, x/step, y/step);
-		console.log(cells[x/step][y/step].flag); //这里也可以调用；
 	}
 }
 
 function updateCanvas(context, cell)
 {
-	for(i=0; i<wn; i++)
+	for(i=0; i<wn-1; i++)
 	{
-		for(j=0; j<hn; j++)
+		for(j=0; j<hn-1; j++)
 		{
 			drawCanvas(context, i, j);			
 		}
-	}	
+	}
+
 }
 
 function fillCell(context, i, j)
@@ -76,30 +84,46 @@ function discolorCell(context, i, j)
 {
 	x = i * step;
 	y = j *step;	
-	context.fillStyle = "white";
+	context.fillStyle = "#ffffff";
 	context.fillRect(x, y, step, step);	
 	cells[i][j].flag = 0;	
 }
 
 function getCtxCells(cells, i, j)
 {
-	if(i==0)
+	if(i==0 && j==0)
+	{
+		cells[i][j].ctxCells = cells[i+1][j].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
+	}
+	else if(i==0 && j!=0 && j!=hn)
 	{
 		cells[i][j].ctxCells = cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i+1][j].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
 	}
-	else if(j==0)
+	else if(i==0 && j==hn)
+	{
+		cells[i][j].ctxCells = cells[i][j-1].flag + cells[i+1][j-1].flag + cells[i+1][j].flag;
+	}
+	else if(i!=0 && i!=wn && j==0)
 	{
 		cells[i][j].ctxCells = cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
-	}
-	else if(i==wn)
-	{
-		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i-1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag;
-	}
-	else if(j==hn)
+	}	
+	else if(i!=0 && i!=wn && j==hn)
 	{
 		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag;
 	}
-	else
+	else if(i==wn && j==0)
+	{
+		cells[i][j].ctxCells = cells[i-1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag;
+	}
+	else if(i==wn && j!=0 && j!=hn)
+	{
+		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i-1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag;
+	}
+	else if(i==wn && j==hn)
+	{
+		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i-1][j].flag;
+	}	
+	else if((i!=0||wn) && (j!=0||hn))
 	{
 		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
 	}  
@@ -108,8 +132,7 @@ function getCtxCells(cells, i, j)
 
 function drawCanvas(context, i, j)
 {
-	x = i * step;
-	y = j *step;
+	var context = canvas.getContext('2d');
 	cells[i][j].ctxCells = getCtxCells(cells, i, j);
 	if (cells[i][j].ctxCells == 3)
 	{
@@ -117,7 +140,7 @@ function drawCanvas(context, i, j)
 	}
 	else if (cells[i][j].ctxCells <2 || cells[i][j].ctxCells >3)
 	{
-		discolorCell(context, i, j);
+		//discolorCell(context, i, j);
 	}
 	else if (cells[i][j].ctxCells ==2)
 	{
