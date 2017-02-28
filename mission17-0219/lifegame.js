@@ -1,8 +1,8 @@
 window.onload = function lifegame()
 {
 	var context = canvas.getContext('2d');
-	var rn = 30;	
-	drawLine(context);
+	var rn = 35;	
+	//drawLine(context);
 	drawRandom(context, rn);
 	/*for(i=0;i<wn-1;i++)
 	{
@@ -14,6 +14,8 @@ window.onload = function lifegame()
 	}*/
 	//updateCanvas();
 	setInterval("updateCanvas()", 500);
+	//context.fillStyle = "black";
+	//drawLine(context);
 }
 
 var canvas = document.getElementById("lifegame");
@@ -59,7 +61,7 @@ function drawRandom(context, rn)
 	}
 }
 
-function updateCanvas(context, cell)
+function updateCanvas(context)
 {
 	for(i=0; i<wn-1; i++)
 	{
@@ -68,7 +70,6 @@ function updateCanvas(context, cell)
 			drawCanvas(context, i, j);			
 		}
 	}
-
 }
 
 function fillCell(context, i, j)
@@ -84,7 +85,7 @@ function discolorCell(context, i, j)
 {
 	x = i * step;
 	y = j *step;	
-	context.fillStyle = "#ffffff";
+	context.fillStyle = "white";
 	context.fillRect(x, y, step, step);	
 	cells[i][j].flag = 0;	
 }
@@ -140,7 +141,7 @@ function drawCanvas(context, i, j)
 	}
 	else if (cells[i][j].ctxCells <2 || cells[i][j].ctxCells >3)
 	{
-		//discolorCell(context, i, j);
+		discolorCell(context, i, j);
 	}
 	else if (cells[i][j].ctxCells ==2)
 	{
