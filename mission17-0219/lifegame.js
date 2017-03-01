@@ -1,4 +1,4 @@
-window.onload = function lifegame()
+window.onload = function()
 {
 	var button = document.getElementById("startButton");
 	button.onclick = function startHandler()
@@ -6,20 +6,11 @@ window.onload = function lifegame()
 		var context = canvas.getContext('2d');
 		//drawLine(context);
 		drawRandom(context, rn);
-		/*for(i=0;i<wn-1;i++)
-		{
-			for(j=0;j<hn-1;j++)
-			{
-				//console.log(getCtxCells(cells, i, j));
-				console.log(cells[i][j].flag);
-			}
-		}*/
 		//updateCanvas();
-		setInterval("updateCanvas()", 500);
+		setInterval(updateCanvas, 500);
 		//context.fillStyle = "black";
-		//drawLine(context);		
+		//drawLine(context);				
 	}
-
 }
 var selectObj = document.getElementById("randomCellNum");
 var index = selectObj.selectedIndex;
@@ -35,7 +26,7 @@ for(i=0; i<wn; i++)
 		if(!cells[i])cells[i] = [];
 		for(j=0; j<hn; j++)
 		{
-			cells[i][j] = {"x":i*step, "y":j*step, "flag":0, "ctxCells":0};
+			cells[i][j] = {"flag":0}; //定义的时候不变；
 		}
 	}
 
@@ -69,11 +60,11 @@ function drawRandom(context, rn)
 
 function updateCanvas(context)
 {
-	for(i=0; i<wn-1; i++)
+	for(i=1; i<wn-2; i++)
 	{
-		for(j=0; j<hn-1; j++)
+		for(j=1; j<hn-2; j++)
 		{
-			drawCanvas(context, i, j);			
+			drawCanvas(context, i, j); //这里把四边去掉；			
 		}
 	}
 }
@@ -98,44 +89,44 @@ function discolorCell(context, i, j)
 
 function getCtxCells(cells, i, j)
 {
-	if(i==0 && j==0)
+	/*if(i==0 && j==0)
 	{
-		cells[i][j].ctxCells = cells[i+1][j].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
+		var ctxCells = cells[i+1][j].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
 	}
 	else if(i==0 && j!=0 && j!=hn)
 	{
-		cells[i][j].ctxCells = cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i+1][j].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
+		var ctxCells = cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i+1][j].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
 	}
 	else if(i==0 && j==hn)
 	{
-		cells[i][j].ctxCells = cells[i][j-1].flag + cells[i+1][j-1].flag + cells[i+1][j].flag;
+		var ctxCells = cells[i][j-1].flag + cells[i+1][j-1].flag + cells[i+1][j].flag;
 	}
 	else if(i!=0 && i!=wn && j==0)
 	{
-		cells[i][j].ctxCells = cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
+		var ctxCells = cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
 	}	
 	else if(i!=0 && i!=wn && j==hn)
 	{
-		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag;
+		var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag;
 	}
 	else if(i==wn && j==0)
 	{
-		cells[i][j].ctxCells = cells[i-1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag;
+		var ctxCells = cells[i-1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag;
 	}
 	else if(i==wn && j!=0 && j!=hn)
 	{
-		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i-1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag;
+		var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i-1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag;
 	}
 	else if(i==wn && j==hn)
 	{
-		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i-1][j].flag;
+		var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i-1][j].flag;
 	}	
-	else if((i!=0||wn) && (j!=0||hn))
+	else if((i!=0 && i!=wn) && (j!=0 && i!=hn))*/
 	{
-		cells[i][j].ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
-	}  
-	return cells[i][j].ctxCells;
-}
+		var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
+	 
+	return ctxCells;
+}	} 
 
 function drawCanvas(context, i, j)
 {
