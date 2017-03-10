@@ -22,7 +22,7 @@ window.onload = function()
 		var index = selectObj.selectedIndex;
 		var rn = selectObj[index].value;
 		initialCell(context, rn); //初始化：随机确定活着的cell
-		//updateCanvas(); //单步调试时用
+		//_updateCanvas(context); //单步调试时用
 		setInterval(_updateCanvas(context), 500); //自动按规则执行	
 	}
 }
@@ -67,13 +67,21 @@ function _updateCanvas(context)
 }
 function updateCanvas(context)
 {
-	for(i=1; i<wn-2; i++)
-	{
-		for(j=1; j<hn-2; j++)
+	for(i=1; i<wn-1; i++){for(j=1; j<hn-1; j++) survivalOrDeath(context, i, j);}
+	for(i=1; i<wn-1; i++)
 		{
-			survivalOrDeath(context, i, j); //这里把四边去掉；			
+			for(j=1; j<hn-1; j++)
+			{
+            	if(cells[i][j].flag == 1)
+            		{
+            			surviveCell(context, i, j);
+            		}
+            	else if(cells[i][j].flag == 0) 
+            		{
+            			deadCell(context, i, j);
+            		}
+			}
 		}
-	}
 }
 
 //复活cell
@@ -100,18 +108,17 @@ function deadCell(context, i, j)
 	cells[i][j].flag = 0;	
 }
 
-//计算周边活着的cells数量
-function neighborCellsNum(cells, i, j)
-{
-	var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
-	return ctxCells;
-}
-
 //确定生死规则
 function survivalOrDeath(context, i, j)
 {
-	cells[i][j].ctxCells = neighborCellsNum(cells, i, j);
-	if (cells[i][j].ctxCells == 3) surviveCell(context, i, j);
-	else if (cells[i][j].ctxCells <2 || cells[i][j].ctxCells >3) deadCell(context, i, j);
-	else if (cells[i][j].ctxCells ==2) return;
+	//计算周边活着的cells数量
+	function neighborCellsNum(cells, i, j)
+	{
+		var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
+		return ctxCells;
+	}
+	var neighborCellsNum = neighborCellsNum(cells, i, j);
+	if (neighborCellsNum == 3) cells[i][j].flag = 1;
+	else if (neighborCellsNum <2 || neighborCellsNum >3) cells[i][j].flag = 0;
+	else if (neighborCellsNum ==2) return;
 }
