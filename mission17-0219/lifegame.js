@@ -1,147 +1,117 @@
+//全局变量定义
+var canvas = document.getElementById("lifegame");
+var step = 50;
+var wn = canvas.offsetWidth/step, hn = canvas.offsetHeight/step;
+var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+//全局变量定义：cell对象定义
+var cells = [];
+for(i=0; i<wn; i++)
+	{
+		if(!cells[i]) cells[i] = [];
+		for(j=0; j<hn; j++) cells[i][j] = {"flag":0};
+	}
+
 window.onload = function()
 {
 	var button = document.getElementById("startButton");
-	button.onclick = function startHandler()
+	var context = canvas.getContext('2d');	
+	drawCellsBorder(context); //画cells的边框
+	button.onclick = function()
 	{
-		var context = canvas.getContext('2d');
-		//drawLine(context);
-		drawRandom(context, rn);
-		//updateCanvas();
-		setInterval(updateCanvas, 500);
-		//context.fillStyle = "black";
-		//drawLine(context);				
+		var selectObj = document.getElementById("randomCellNum");
+		var index = selectObj.selectedIndex;
+		var rn = selectObj[index].value;
+		initialCell(context, rn); //初始化：随机确定活着的cell
+		//updateCanvas(); //单步调试时用
+		setInterval(_updateCanvas(context), 500); //自动按规则执行	
 	}
 }
-var selectObj = document.getElementById("randomCellNum");
-var index = selectObj.selectedIndex;
-var rn = selectObj[index].value;
-var canvas = document.getElementById("lifegame");
-var step = 50;
-var wn = canvas.offsetWidth/step, hn = canvas.offsetHeight/step, n = wn * hn;
-var cells = [];
-var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
-//console.log(wn, hn);//浮点数
-for(i=0; i<wn; i++)
-	{
-		if(!cells[i])cells[i] = [];
-		for(j=0; j<hn; j++)
-		{
-			cells[i][j] = {"flag":0}; //定义的时候不变；
-		}
-	}
 
-function drawLine(context)
+//画cells的边框
+function drawCellsBorder(context)
 {
 	context.beginPath();
 	context.lineWidth = 1;
-	for(i=0; i<wn; i++)
+	for(i=1; i<wn; i++)
 	{
-		context.moveTo(i*step,0);
-		context.lineTo(i*step, canvas.offsetHeight);
+		context.moveTo(i*step,step);
+		context.lineTo(i*step, (hn-1)*step);
 	}	
-	for(j=0; j<hn; j++)
+	for(j=1; j<hn; j++)
 	{
-		context.moveTo(0, j*step);
-		context.lineTo(canvas.offsetWidth, j*step);
+		context.moveTo(step, j*step);
+		context.lineTo((wn-1)*step, j*step);
 	}
 	context.closePath();
 	context.stroke();
 }
 
-function drawRandom(context, rn)
+//初始化：随机确定活着的cell
+function initialCell(context, rn)
 {
 	for(i=0; i<rn; i++)
 	{
-		var x = step * (Math.floor(Math.random() * wn));
-		var y = step * (Math.floor(Math.random() * hn));
-		fillCell(context, x/step, y/step);
+		var x = step * Math.floor(Math.random() * (wn-2)+1);
+		var y = step * Math.floor(Math.random() * (hn-2)+1);
+		surviveCell(context, x/step, y/step);		
 	}
 }
 
+//执行规则
+function _updateCanvas(context)
+{
+	return function()
+	{
+		updateCanvas(context);
+	}
+}
 function updateCanvas(context)
 {
 	for(i=1; i<wn-2; i++)
 	{
 		for(j=1; j<hn-2; j++)
 		{
-			drawCanvas(context, i, j); //这里把四边去掉；			
+			survivalOrDeath(context, i, j); //这里把四边去掉；			
 		}
 	}
 }
 
-function fillCell(context, i, j)
+//复活cell
+function surviveCell(context, i, j)
 {
 	x = i * step;
 	y = j *step;
 	context.fillStyle = randomColor;	
 	context.fillRect(x, y, step, step);
+	context.strokeStyle = "black";
+	context.strokeRect(x, y, step, step);	
 	cells[i][j].flag = 1;
 }
 
-function discolorCell(context, i, j)
+//杀死cell
+function deadCell(context, i, j)
 {
 	x = i * step;
 	y = j *step;	
 	context.fillStyle = "white";
-	context.fillRect(x, y, step, step);	
+	context.fillRect(x, y, step, step);
+	context.strokeStyle = "black";
+	context.strokeRect(x, y, step, step);
 	cells[i][j].flag = 0;	
 }
 
-function getCtxCells(cells, i, j)
+//计算周边活着的cells数量
+function neighborCellsNum(cells, i, j)
 {
-	/*if(i==0 && j==0)
-	{
-		var ctxCells = cells[i+1][j].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
-	}
-	else if(i==0 && j!=0 && j!=hn)
-	{
-		var ctxCells = cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i+1][j].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
-	}
-	else if(i==0 && j==hn)
-	{
-		var ctxCells = cells[i][j-1].flag + cells[i+1][j-1].flag + cells[i+1][j].flag;
-	}
-	else if(i!=0 && i!=wn && j==0)
-	{
-		var ctxCells = cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
-	}	
-	else if(i!=0 && i!=wn && j==hn)
-	{
-		var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag;
-	}
-	else if(i==wn && j==0)
-	{
-		var ctxCells = cells[i-1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag;
-	}
-	else if(i==wn && j!=0 && j!=hn)
-	{
-		var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i-1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag;
-	}
-	else if(i==wn && j==hn)
-	{
-		var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i-1][j].flag;
-	}	
-	else if((i!=0 && i!=wn) && (j!=0 && i!=hn))*/
-	{
-		var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
-	 
+	var ctxCells = cells[i-1][j-1].flag + cells[i][j-1].flag + cells[i+1][j-1].flag  + cells[i-1][j].flag + cells[i+1][j].flag + cells[i-1][j+1].flag + cells[i][j+1].flag + cells[i+1][j+1].flag;
 	return ctxCells;
-}	} 
+}
 
-function drawCanvas(context, i, j)
+//确定生死规则
+function survivalOrDeath(context, i, j)
 {
-	var context = canvas.getContext('2d');
-	cells[i][j].ctxCells = getCtxCells(cells, i, j);
-	if (cells[i][j].ctxCells == 3)
-	{
-		fillCell(context, i, j);
-	}
-	else if (cells[i][j].ctxCells <2 || cells[i][j].ctxCells >3)
-	{
-		discolorCell(context, i, j);
-	}
-	else if (cells[i][j].ctxCells ==2)
-	{
-		return;
-	}
+	cells[i][j].ctxCells = neighborCellsNum(cells, i, j);
+	if (cells[i][j].ctxCells == 3) surviveCell(context, i, j);
+	else if (cells[i][j].ctxCells <2 || cells[i][j].ctxCells >3) deadCell(context, i, j);
+	else if (cells[i][j].ctxCells ==2) return;
 }
