@@ -1,10 +1,12 @@
-# 面向对象的基本概念
+# 面向对象
+
+## 面向对象的基本概念
 
 	•	什么是面向对象？  
 	•	面向对象为何出现？  
 	•	面向对象最重要的特性有哪些  
 
-## 什么是面向对象？
+### 什么是面向对象？
 
 > 面向对象(Object Oriented,OO)是软件开发方法。面向对象的概念和应用已超越了程序设计和软件开发，扩展到如数据库系统、交互式界面、应用结构、应用平台、分布式系统、网络管理结构、CAD技术、人工智能等领域。面向对象是一种对现实世界理解和抽象的方法，是计算机编程技术发展到一定阶段后的产物。  —— [面向对象_百度百科](http://baike.baidu.com/item/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1)
 
@@ -14,7 +16,7 @@
 
 理解：程序是由对象构成的，不是由函数构成的。对象的方法用函数来实现。
 
-## 面向对象为何出现？
+### 面向对象为何出现？
 
 > 面向对象是为了解决系统的可维护性，可扩展性，可重用性.  
  面向对象产生的历史原因有下面两点：  
@@ -34,7 +36,7 @@
  
  （作者原本的观点未理解）
  
-##  面向对象最重要的特性有哪些？
+###  面向对象最重要的特性有哪些？
 
 
 > ![](http://7xotr7.com1.z0.glb.clouddn.com/17-3-13/96431290-file_1489370413685_cbc1.png)  ——[如何用一句话说明什么是面向对象思想？ - 知乎](https://www.zhihu.com/question/19854505)  
@@ -71,5 +73,100 @@ OO开发范式大致为：划分对象→抽象类→将类组织成为层次化
 我们知道，封装可以隐藏实现细节，使得代码模块化；继承可以扩展已存在的代码模块（类）；它们的目的都是为了——代码重用。而多态则是为了实现另一个目的——接口重用！多态的作用，就是为了类在继承和派生的时候，保证使用“家谱”中任一类的实例的某一属性时的正确调用。
 —— [面向对象的三个基本特征 和 五种设计原则 - 青皮虾的专栏 - 博客频道 - CSDN.NET](http://blog.csdn.net/cancan8538/article/details/8057095)
 
+
+## JS中的面向对象
+
+> Javascript是一种基于对象（object-based）的语言，你遇到的所有东西几乎都是对象。但是，它又不是一种真正的面向对象编程（OOP）语言，因为它的语法中没有class（类）。  
+
+方法1:
+
+	var Cat = 
+	{
+		name : '',
+		color : ''
+	}
+	var cat1 = {}; // 创建一个空对象
+		cat1.name = "大毛"; // 按照原型对象的属性赋值
+		cat1.color = "黄色";
+	var cat2 = {};
+		cat2.name = "二毛";
+		cat2.color = "黑色";
+
+> 有两个缺点，一是如果多生成几个实例，写起来就非常麻烦；二是实例与原型之间，没有任何办法，可以看出有什么联系。
+
+方法2:  
+
+	function Cat(name,color) 
+	{
+		return
+		{
+			name:name,
+			color:color
+		}
+	}
+	
+	var cat1 = Cat("大毛","黄色");
+	var cat2 = Cat("二毛","黑色");
+
+> 问题依然是，cat1和cat2之间没有内在的联系，不能反映出它们是同一个原型对象的实例。
+
+方法3:  
+> 所谓"构造函数"，其实就是一个普通函数，但是内部使用了this变量。对构造函数使用new运算符，就能生成实例，并且this变量会绑定在实例对象上。
+
+	function Cat(name,color)
+	{
+		this.name=name;
+		this.color=color;
+	}
+	var cat1 = new Cat("大毛","黄色");
+	var cat2 = new Cat("二毛","黑色");
+	alert(cat1.name); // 大毛
+	alert(cat1.color); // 黄色
+
+> 这时cat1和cat2会自动含有一个constructor属性，指向它们的构造函数。
+ 
+	alert(cat1.constructor == Cat); //true
+	alert(cat2.constructor == Cat); //true
+
+> Javascript还提供了一个instanceof运算符，验证原型对象与实例对象之间的关系。
+ 
+	alert(cat1 instanceof Cat); //true
+	alert(cat2 instanceof Cat); //true
+
+方法5:
+
+> Javascript规定，每一个构造函数都有一个prototype属性，指向另一个对象。这个对象的所有属性和方法，都会被构造函数的实例继承。这意味着，我们可以把那些不变的属性和方法，直接定义在prototype对象上。
+
+	function Cat(name,color)
+	{
+		this.name = name;
+		this.color = color;
+	}
+	Cat.prototype.type = "猫科动物";
+	Cat.prototype.eat = function()
+	{
+		alert("吃老鼠")
+	};
+
+> 这时所有实例的type属性和eat()方法，其实都是同一个内存地址，指向prototype对象，因此就提高了运行效率。
+
+—— [Javascript 面向对象编程（一）：封装 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html)  
+
+
+- 命名空间  
+
+> 命名空间是一个容器，它允许开发人员在一个独特的，特定于应用程序的名称下捆绑所有的功能。 在JavaScript中，命名空间只是另一个包含方法，属性，对象的对象。
+
+- 类  
+
+> JavaScript是一种基于原型的语言，它没类的声明语句。相反，JavaScript可用方法作类。定义一个类跟定义一个函数一样简单。
+
+- 构造器  
+
+> 在实例化时构造器被调用 (也就是对象实例被创建时)。构造器是对象中的一个方法。 在JavaScript,中函数就可以作为构造器使用,因此不需要特别地定义一个构造器方法. 每个声明的函数都可以在实例化后被调用执行。构造器常用于给对象的属性赋值或者为调用函数做准备。
+
+（构造器是不是这个'new'？）
+
+—— [JavaScript面向对象简介 - JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript)
 
 
