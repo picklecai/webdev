@@ -12,7 +12,20 @@
 	
 > 已安装好Node.js，下一步做什么？  
 安装结束后，你可以输入一个新命令“node”。使用该“node”命令有两种不同的方法。第一种不带任何参数，将打开一个交互式Shell“>”（REPL： read-eval-print-loop），你可以在这里执行JavaScript代码。
+
+> Node命令的另一种用法是执行一个JavaScript文件。这是我们平时最常用的方法。
+
+	node hello.js
+ 
+> 
+
 —— [专门针对初学者的Node.js教程-CSDN.NET](http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs)
+
+## 退出
+
+	.exit
+	
+即可在命令行中退出。
 
 	
 
