@@ -27,5 +27,10 @@
 	
 即可在命令行中退出。
 
+
+## 教程
+
+
+[概述 - Node.js 官方文档中文版 - 极客学院Wiki](http://wiki.jikexueyuan.com/project/nodejs/synopsis.html)
 	
 
